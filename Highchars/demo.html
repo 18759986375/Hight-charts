@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<script type="text/javascript" src="js/jqr.js"></script>
+	<script type="text/javascript" src="js/highcharts.js"></script>
+	<script type="text/javascript" src="js/exporting.js"></script>
+	<style>
+		.wrap {
+			width: 500px;
+			height: 500px;
+			margin: 50px auto;
+			-webkit-box-shadow: 0 0 5px 3px red;
+			-moz-box-shadow: 0 0 5px 3px red;
+			-ms-box-shadow: 0 0 5px 3px red;
+			box-shadow: 0 0 5px 3px red;
+		}
+	</style>
+	<script>
+		$(function() {
+			$('.wrap').highcharts({
+				chart: {
+	            	type: 'pie',		//指定图标类型（默认为line直线图）
+	            	// inverted: true  		//XY轴对调
+	        	},
+				title: {
+					text: '我的技术性演讲',  	//图标的标题
+				},
+				xAxis: {
+					categories: [1, 2, 3, 4, 5], //指定X周分组
+					title: {
+						text: 'xxxxxxxxx'		//x轴的标题
+					}
+				},
+				yAxis: {
+					title: {
+					    text: 'Y轴标题，还没有想好'  //	y轴的标题
+					}
+				},
+				series: [{						//数据
+					name: '张三',
+					data: [3, 8, 1, 9, 12]
+				}],
+				credits: {
+					enabled: false  //去除版权的信息
+				}
+			});
+		});
+		$(function() {
+			$('.btn').click(function() {
+				//自适应宽度功能
+				var chart = $('.wrap').highcharts();
+				chart.reflow();
+			})
+			var wid = 500;
+			$('.small').click(function() {
+				wid -= 100;
+				$('.wrap').width(wid);
+				$(".wrap").height(wid);
+				var chart = $('.wrap').highcharts();
+				chart.reflow();
+			})
+			$('.big').click(function() {
+				wid += 100;
+				$('.wrap').width(wid);
+				$('.wrap').height(wid);
+				var chart = $('.wrap').highcharts();
+				chart.reflow();
+			})
+		})
+	</script>
+</head>
+<body>
+	<div>
+		<input type="button" value="自适应" class="btn">
+		<input type="button" class="small" value="变小">
+		<input type="button" value="变大" class="big">	
+	</div>
+	<div class="wrap"></div>
+</body>
+</html>
